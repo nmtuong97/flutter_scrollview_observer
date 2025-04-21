@@ -4,8 +4,8 @@
  * @Date: 2022-08-08 00:20:03
  */
 import 'package:flutter/material.dart';
-import 'package:scrollview_observer_example/features/custom_scrollview/custom_scrollview_demo/custom_scrollview_demo_page.dart';
 import 'package:scrollview_observer_example/features/custom_scrollview/custom_scrollview_demo/custom_scrollview_center_demo_page.dart';
+import 'package:scrollview_observer_example/features/custom_scrollview/custom_scrollview_demo/custom_scrollview_demo_page.dart';
 import 'package:scrollview_observer_example/features/custom_scrollview/custom_scrollview_demo/multi_sliver_demo_page.dart';
 import 'package:scrollview_observer_example/features/custom_scrollview/sliver_appbar_demo/sliver_appbar_demo_page.dart';
 import 'package:scrollview_observer_example/features/gridview/gridview_ctx_demo/gridview_ctx_demo_page.dart';
@@ -31,6 +31,8 @@ import 'package:scrollview_observer_example/features/scene/anchor_demo/anchor_wa
 import 'package:scrollview_observer_example/features/scene/azlist_demo/azlist_page.dart';
 import 'package:scrollview_observer_example/features/scene/chat_demo/page/chat_gpt_page.dart';
 import 'package:scrollview_observer_example/features/scene/chat_demo/page/chat_page.dart';
+import 'package:scrollview_observer_example/features/scene/chat_demo/page/chat_page_infinite.dart';
+import 'package:scrollview_observer_example/features/scene/chat_demo/page/chat_page_infinite_list_scroll.dart';
 import 'package:scrollview_observer_example/features/scene/expandable_carousel_slider_demo/expandable_carousel_slider_demo.dart';
 import 'package:scrollview_observer_example/features/scene/image_tab_demo/image_tab_page.dart';
 import 'package:scrollview_observer_example/features/scene/scrollview_form_demo/scrollview_form_demo_page.dart';
@@ -49,6 +51,15 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var rowDataArr = _buildListViewRows(context);
+
+    return const Scaffold(
+      body: ChatPageInfinite(),
+      // body: ChatPageInfiniteScroll(),
+    );
+    return const Scaffold(
+      body: ChatPageInfiniteScroll(),
+    );
+
     return Scaffold(
       appBar: AppBar(title: const Text("ScrollView Observer Example")),
       body: ListView.separated(
@@ -239,6 +250,12 @@ class HomePage extends StatelessWidget {
         "Chat",
         () {
           return const ChatPage();
+        },
+      ),
+      Tuple2<String, PageBuilder>(
+        "Chat Infinite",
+        () {
+          return const ChatPageInfinite();
         },
       ),
       Tuple2<String, PageBuilder>(

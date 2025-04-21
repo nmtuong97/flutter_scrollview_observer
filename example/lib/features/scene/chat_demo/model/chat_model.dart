@@ -8,7 +8,12 @@ class ChatModel {
   ChatModel({
     required this.isOwn,
     required this.content,
+    required this.messageId,
+    this.hasAnimated = false,
   });
+
+  final String messageId;
   final bool isOwn;
   final String content;
+  bool hasAnimated;
 }

@@ -5,7 +5,9 @@
  */
 
 import 'dart:math';
+
 import 'package:scrollview_observer_example/features/scene/chat_demo/model/chat_model.dart';
+import 'package:scrollview_observer_example/utils/random.dart';
 
 class ChatDataHelper {
   static List<String> chatContents = [
@@ -27,6 +29,7 @@ class ChatDataHelper {
     final content =
         ChatDataHelper.chatContents[random.nextInt(chatContents.length)];
     return ChatModel(
+      messageId: RandomTool.string(16),
       isOwn: isOwn ?? random.nextBool(),
       content: content,
     );

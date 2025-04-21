@@ -235,14 +235,20 @@ class ChatScrollObserver {
 
   observeSwitchShrinkWrap() {
     ambiguate(WidgetsBinding.instance)?.addPostFrameCallback((_) {
+      print("observeSwitchShrinkWrap: 1");
       final ctx = observerController.fetchSliverContext();
       if (ctx == null) return;
+      print("observeSwitchShrinkWrap: 2");
       final obj = ObserverUtils.findRenderObject(ctx);
       if (obj is! RenderSliver) return;
+      print("observeSwitchShrinkWrap: 3");
       final constraints = ObserverUtils.sliverConstraints(obj);
       if (constraints == null) return;
+      print("observeSwitchShrinkWrap: 4");
       final viewportMainAxisExtent = constraints.viewportMainAxisExtent;
       final scrollExtent = obj.geometry?.scrollExtent ?? 0;
+      print(
+          "observeSwitchShrinkWrap: viewportMainAxisExtent: $viewportMainAxisExtent, scrollExtent: $scrollExtent");
       if (viewportMainAxisExtent >= scrollExtent) {
         if (innerIsShrinkWrap) return;
         innerIsShrinkWrap = true;

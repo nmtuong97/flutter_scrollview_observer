@@ -11,6 +11,7 @@ import 'package:scrollview_observer/scrollview_observer.dart';
 import 'package:scrollview_observer_example/features/scene/chat_demo/helper/chat_data_helper.dart';
 import 'package:scrollview_observer_example/features/scene/chat_demo/model/chat_model.dart';
 import 'package:scrollview_observer_example/features/scene/chat_demo/widget/chat_item_widget.dart';
+import 'package:scrollview_observer_example/utils/random.dart';
 
 class ChatGPTPage extends StatefulWidget {
   const ChatGPTPage({Key? key}) : super(key: key);
@@ -196,7 +197,11 @@ class _ChatGPTPageState extends State<ChatGPTPage> {
       count++;
       final model = chatModels.first;
       final newString = '${model.content}-1+1';
-      final newModel = ChatModel(isOwn: model.isOwn, content: newString);
+      final newModel = ChatModel(
+        messageId: RandomTool.string(16),
+        isOwn: model.isOwn,
+        content: newString,
+      );
       chatModels[0] = newModel;
       chatObserver.standby(
         mode: ChatScrollObserverHandleMode.generative,

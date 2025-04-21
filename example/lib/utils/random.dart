@@ -22,4 +22,17 @@ class RandomTool {
       1,
     );
   }
+
+  static String string(int length) {
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    final random = Random.secure();
+    return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+        .join();
+  }
+
+  static bool boolLean() {
+    final random = Random.secure();
+    return random.nextBool();
+  }
 }
